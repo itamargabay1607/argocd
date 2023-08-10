@@ -22,3 +22,4 @@ spec:
   type: NodePort # Change this line to NodePort
 status:
   loadBalancer: {}
+
