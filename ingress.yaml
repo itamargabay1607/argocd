@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: default
+  name: ingress-kibana
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=600
+    alb.ingress.kubernetes.io/target-group-attributes: deregistration_delay.timeout_seconds=30
+    alb.ingress.kubernetes.io/security-groups: sg-0bbe4031b0e2ccdc6
+    external-dns.alpha.kubernetes.io/hostname: kibana.example.com # Replace with your hostname
+    alb.ingress.kubernetes.io/load-balancer-name: my-kibana-lb
+    alb.ingress.kubernetes.io/certificate-arn: 
+spec:
+  rules:
+    - host: kibana.example.com # Replace with your hostname
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kibana
+                port:
+                  name: "5601"
