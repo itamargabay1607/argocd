@@ -16,6 +16,6 @@ spec:
       targetPort: 5601
   selector:
     io.kompose.service: kibana
-  type: LoadBalancer # Change this line to specify LoadBalancer type
+  type: NodePort
 status:
   loadBalancer: {}
