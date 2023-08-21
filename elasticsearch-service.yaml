@@ -19,7 +19,7 @@ spec:
       targetPort: 9300
   selector:
     io.kompose.service: elasticsearch
-  type: NodePort # Change this line to NodePort
+  type: LoadBalancer # Change this line to NodePort
 status:
   loadBalancer: {}
 
